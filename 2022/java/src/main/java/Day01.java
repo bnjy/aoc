@@ -28,6 +28,9 @@ public class Day01 {
         System.out.println(max);
 
         //4. sort list in ascending order
+        // this is probably the laziest solution ever.
+        // look if you can replace with some proper sorting algorithm
+        // e g quicksort or mergesort
         Collections.sort(elvesCalories, Collections.reverseOrder());
 
         //4. calculate top 3 total
@@ -101,5 +104,4 @@ public class Day01 {
         }
         return elvesCalories;
     }
-    
 }
