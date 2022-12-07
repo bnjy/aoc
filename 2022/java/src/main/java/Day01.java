@@ -14,57 +14,74 @@ public class Day01 {
 
     public static void main(String[] args) throws IOException {
 
-        List<Integer> elveCalories = new ArrayList<>();
+        List<Integer> elvesCalories = new ArrayList<>();
         int max = 0;
         int sumTopThree = 0;
 
         //1. read from input file
-        elveCalories = readFromFile("java/src/main/resources/day1.txt", elveCalories);
+        elvesCalories = readFromFile("java/src/main/resources/day1.txt", elvesCalories);
         
         //2. sort the array list
-        max = getMaxValue(elveCalories);
+        max = getMaxValue(elvesCalories);
 
         //3. print the max value
         System.out.println(max);
 
         //4. sort list in ascending order
-        Collections.sort(elveCalories, Collections.reverseOrder());
+        Collections.sort(elvesCalories, Collections.reverseOrder());
 
         //4. calculate top 3 total
-        sumTopThree = sumTopThree(elveCalories);
+        sumTopThree = sumTopThree(elvesCalories);
         System.out.println(sumTopThree);
 
     }
 
-    private static int sumTopThree(List<Integer> elveCalories) {
+    /**
+     * 
+     * @param elvesCalories
+     * @return
+     */
+    private static int sumTopThree(List<Integer> elvesCalories) {
         int sum = 0;
         for(int i = 0; i < 3; i++){
-            sum += elveCalories.get(i);
+            sum += elvesCalories.get(i);
         }
         return sum;
     }
 
-    private static int getMaxValue(List<Integer> elveCalories) {
+    /**
+     * 
+     * @param elvesCalories
+     * @return
+     */
+    private static int getMaxValue(List<Integer> elvesCalories) {
         int value = 0;
-        for(int i = 0; i < elveCalories.size(); i++){
-            if(value < elveCalories.get(i)){
-                value = elveCalories.get(i);
+        for(int i = 0; i < elvesCalories.size(); i++){
+            if(value < elvesCalories.get(i)){
+                value = elvesCalories.get(i);
             }
         }
         return value;
     }
 
-    public static List<Integer> readFromFile(String inputPath, List<Integer> elveCalories) throws IOException {
+    /**
+     * 
+     * @param inputPath
+     * @param elvesCalories
+     * @return
+     * @throws IOException
+     */
+    public static List<Integer> readFromFile(String inputPath, List<Integer> elvesCalories) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(inputPath));
         int sum = 0;
 
         try {
             String line = br.readLine();
-
             //while line is not null
             while (line != null) {
+                //if line is empty (""), add sum to the Integer Array, reset sum variable and go to next line.
                 if(line.trim().isEmpty()){
-                    elveCalories.add(sum);
+                    elvesCalories.add(sum);
                     sum = 0;
                     line = br.readLine();
                 }
@@ -75,14 +92,14 @@ public class Day01 {
                 // read next line
                 line = br.readLine();
             }
-            elveCalories.add(sum);
+            elvesCalories.add(sum);
             sum = 0;
 
             br.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return elveCalories;
+        return elvesCalories;
     }
     
 }
